@@ -1,0 +1,18 @@
+type Event {
+    result: String!
+}
+
+type Todos {
+    id: String!
+    todo: String!
+}
+
+type Query {
+    getTodos: [Todos]
+}
+
+type Mutation {
+    addTodo(todo: String!): Event
+    deleteTodo(id: String!): Event
+    updateTodo(todo: String!, id: String!): Event
+}
