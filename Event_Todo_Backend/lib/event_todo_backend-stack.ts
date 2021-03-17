@@ -4,7 +4,9 @@ import * as events from "@aws-cdk/aws-events";
 import * as appsync from "@aws-cdk/aws-appsync";
 import * as targets from "@aws-cdk/aws-events-targets";
 import * as dynamodb from "@aws-cdk/aws-dynamodb";
+import * as cognito from "@aws-cdk/aws-cognito"; 
 import { requestTemplate, responseTemplate } from '../utils/appsync-request-response';
+import { UserPoolClient } from '@aws-cdk/aws-cognito';
 
 export class EventTodoBackendStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
@@ -12,15 +14,49 @@ export class EventTodoBackendStack extends cdk.Stack {
 
     // The code that defines your stack goes here
 
+    const userPool = new cognito.UserPool(this, "CrudApp_UserPool", {
+    userPoolName: "CrudApp_Event_Userpool",
+    selfSignUpEnabled: true,
+    accountRecovery: cognito.AccountRecovery.EMAIL_ONLY,
+    userVerification: {
+      emailStyle: cognito.VerificationEmailStyle.CODE,
+      smsMessage: "Hello {username}, Thanks for signing up to our awesome app! Your verification code is {####}"
+    },
+    autoVerify: {
+      email: true
+    },
+    standardAttributes: {
+      email: {
+        mutable: true,
+        required: true
+      },
+      phoneNumber: {
+        required: true,
+        mutable: true
+      },
+    } ,
+    });
+
+    // we Need userClient to connect userPool with our frontEnd
+    const userPoolClient = new cognito.UserPoolClient(this, "userPoolClient", {
+      userPool: userPool
+    });
+
+    new cdk.CfnOutput(this, "UserPoolId", {
+      value: userPool.userPoolId,
+    });
+
+    new cdk.CfnOutput(this, "UserPoolClient", {
+      value: userPoolClient.userPoolClientId,
+    });
+
     const api = new appsync.GraphqlApi(this, "TodoApi", {
       name: "TodoEventApi",
       schema: appsync.Schema.fromAsset('graphql/schema.graphql'),
       authorizationConfig: {
         defaultAuthorization: {
           authorizationType: appsync.AuthorizationType.API_KEY,
-          apiKeyConfig: {
-            expires: cdk.Expiration.after(cdk.Duration.days(365))
-          },
+         
         },
       },
       logConfig: { fieldLogLevel: appsync.FieldLogLevel.ALL },

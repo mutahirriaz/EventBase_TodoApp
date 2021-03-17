@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-eventdriventodoapp-dev-213357-authRole",
+      "UnauthRoleArn": "arn:aws:iam::287405436926:role/amplify-eventdriventodoapp-dev-213357-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::287405436926:role/amplify-eventdriventodoapp-dev-213357-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-eventdriventodoapp-dev-213357-deployment",
+      "UnauthRoleName": "amplify-eventdriventodoapp-dev-213357-unauthRole",
+      "StackName": "amplify-eventdriventodoapp-dev-213357",
+      "StackId": "arn:aws:cloudformation:us-east-1:287405436926:stack/amplify-eventdriventodoapp-dev-213357/6bfc13f0-8675-11eb-ad4f-0a2d859c5ee7",
+      "AmplifyAppId": "d278mt5wwjdu1x"
+    }
+  }
+}

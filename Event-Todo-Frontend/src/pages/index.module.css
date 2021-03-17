@@ -1,0 +1,78 @@
+.main_div{
+    margin-top: 30px;
+}
+.input_div{
+    text-align: center;
+}
+.input_text{
+    text-align: center;
+}
+.addBtn{
+    text-align: center;
+    margin-top: 20px;
+}
+.todo_div{
+    text-align: center;
+  
+}
+.todo_div p{
+    width: 250px;
+}
+
+.flex_main_div{
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 1px solid rgb(121, 118, 118);
+    margin-top: 40px;
+}
+.responsive_flex{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100px;
+}
+.update_btn_div{
+    /* border: 1px solid red; */
+    width: 40px;
+    
+}
+.update_btn{
+    /* width: 30px; */
+    text-align: left !important;
+    color: green;
+    cursor: pointer;
+    outline: none;
+}
+.index-module--update_btn--7ZFIu{
+    font-size: 10px !important;
+    border: 1px solid black !important;
+}
+.delete_btn{
+    color: rgb(232, 55, 55);
+    cursor: pointer;
+    outline: none;
+}
+.loader {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden !important;
+    overflow-y: hidden !important;
+}
+
+@media (max-width:414px){
+    .flex_main_div{
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center;
+        justify-content: center;
+    }
+    .responsive_flex{
+        display: flex;
+        flex-direction: row;
+    }
+}
